@@ -13,13 +13,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation"
 import { LogOut } from "lucide-react"
 import NavItems from "@/components/NavItems"
+import { signOut } from "@/lib/actions/auth.actions"
 
-const UserDropdown = () => {
+const UserDropdown = ({ user }: { user: User }) => {
     const router = useRouter()
     const handleSignout = async () => {
+        await signOut()
         router.push("/sign-in")
     }
-    const user = { name: "Jone", email: "example@test.com" }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger render={
@@ -38,7 +40,7 @@ const UserDropdown = () => {
                 </Button>
             }>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={"text-gray-400 w-50"}>
+            <DropdownMenuContent className={"text-gray-400 w-70"}>
                 <DropdownMenuGroup>
                     <DropdownMenuLabel>
                         <div className="flex relative items-center gap-3 py-2">
